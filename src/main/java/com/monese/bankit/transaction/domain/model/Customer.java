@@ -1,20 +1,14 @@
 package com.monese.bankit.transaction.domain.model;
 
+import com.monese.bankit.common.domain.BaseEntity;
 import lombok.Data;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import java.time.LocalDate;
 
 @Data
 @Entity
-public class Customer {
-
-    @Id
-    @GeneratedValue
-    private Long id;
+public class Customer extends BaseEntity {
 
     private String firstName;
 
