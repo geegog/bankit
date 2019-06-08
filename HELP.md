@@ -1,8 +1,16 @@
-# How to run the application
+# Getting Started
 
-1. Clone project
-2. Import project into your IDE (Intellij preferably) as a maven project.
-3. Allow all dependency to be imported, then run the application.
+### Reference Documentation
+For further reference, please consider the following sections:
 
-# To run test
-4. Run "com.monese.bankit.transaction.rest.TransactionRestControllerTests"
+* [Official Apache Maven documentation](https://maven.apache.org/guides/index.html)
+
+### Guides
+The following guides illustrate how to use some features concretely:
+
+* [Building a RESTful Web Service](https://spring.io/guides/gs/rest-service/)
+* [Serving Web Content with Spring MVC](https://spring.io/guides/gs/serving-web-content/)
+* [Building REST services with Spring](https://spring.io/guides/tutorials/bookmarks/)
+* [Building a Hypermedia-Driven RESTful Web Service](https://spring.io/guides/gs/rest-hateoas/)
+* [Accessing Data with JPA](https://spring.io/guides/gs/accessing-data-jpa/)
+
