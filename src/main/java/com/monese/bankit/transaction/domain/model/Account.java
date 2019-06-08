@@ -16,11 +16,13 @@ public class Account extends BaseEntity {
     @Column(unique = true)
     private String number;
 
+    @Enumerated(EnumType.STRING)
     private Type type;
 
     @ManyToOne
     private Customer customer;
 
+    @Embedded
     private Money money;
 
     public void credit(BigDecimal amount) {

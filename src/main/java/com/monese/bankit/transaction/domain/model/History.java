@@ -4,9 +4,7 @@ import com.monese.bankit.common.domain.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Data
@@ -26,8 +24,10 @@ public class History extends BaseEntity {
     @Column(precision = 8, scale = 2)
     private BigDecimal newBalance;
 
+    @Enumerated(EnumType.STRING)
     private Source source;
 
+    @Enumerated(EnumType.STRING)
     private Type type;
 
 }
