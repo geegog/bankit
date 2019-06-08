@@ -14,10 +14,10 @@ import java.util.Currency;
 @Value
 @NoArgsConstructor(force=true,access= AccessLevel.PRIVATE)
 @AllArgsConstructor(staticName="of")
-class Money {
+public class Money {
 
     @Column(precision = 8, scale = 2)
-    private BigDecimal balance;
+    BigDecimal balance;
 
-    private Currency currency;
+    Currency currency;
 }

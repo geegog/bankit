@@ -7,8 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
 
-@Getter
-@Setter
+@Data
 @MappedSuperclass
 public class BaseEntity {
 
