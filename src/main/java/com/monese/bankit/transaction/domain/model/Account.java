@@ -6,7 +6,6 @@ import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 
 @Data
 @EqualsAndHashCode(callSuper=true)
@@ -14,7 +13,7 @@ import java.time.LocalDateTime;
 public class Account extends BaseEntity {
 
     @Column(unique = true)
-    private String number;
+    private String acNumber;
 
     @Enumerated(EnumType.STRING)
     private Type type;
@@ -26,11 +25,11 @@ public class Account extends BaseEntity {
     private Money money;
 
     public void credit(BigDecimal amount) {
-        this.money.getBalance().add(amount);
+        this.money = Money.of(this.money.getBalance().add(amount), this.getMoney().getCurrency());
     }
 
     public void debit(BigDecimal amount) {
-        this.money.getBalance().subtract(amount);
+        this.money = Money.of(this.money.getBalance().subtract(amount), this.getMoney().getCurrency());
     }
 
     public boolean isFundEnough(BigDecimal amount) {
@@ -38,10 +37,7 @@ public class Account extends BaseEntity {
     }
 
     public boolean isValidName(String firstName, String lastName) {
-        if (this.customer.getFirstName().equalsIgnoreCase(firstName) && this.customer.getLastName().equalsIgnoreCase(lastName)) {
-            return true;
-        }
-        return false;
+        return this.customer.getFirstName().equalsIgnoreCase(firstName) && this.customer.getLastName().equalsIgnoreCase(lastName);
     }
 
 }

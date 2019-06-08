@@ -26,10 +26,8 @@ public class TransactionRestController {
     }
 
     @GetMapping("/history")
-    public ResponseEntity<?> history(@RequestParam(value = "accountNumber") String accountNumber,
-                                     @RequestParam(value = "startDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Optional<LocalDate> startDate,
-                                     @RequestParam(value = "endDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Optional<LocalDate> endDate) {
-        return new ResponseEntity<>(transactionService.allAccountHistory(accountNumber, startDate.get(), endDate.get()), HttpStatus.OK);
+    public ResponseEntity<?> history(@RequestParam(value = "accountNumber") String accountNumber) {
+        return new ResponseEntity<>(transactionService.allAccountHistory(accountNumber), HttpStatus.OK);
     }
 
 }

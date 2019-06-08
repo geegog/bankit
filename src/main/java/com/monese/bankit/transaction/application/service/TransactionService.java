@@ -1,10 +1,7 @@
 package com.monese.bankit.transaction.application.service;
 
 import com.monese.bankit.common.application.dto.MoneyDTO;
-import com.monese.bankit.transaction.application.dto.AccountDTO;
-import com.monese.bankit.transaction.application.dto.HistoryDTO;
-import com.monese.bankit.transaction.application.dto.StatementDTO;
-import com.monese.bankit.transaction.application.dto.TransferDTO;
+import com.monese.bankit.transaction.application.dto.*;
 import com.monese.bankit.transaction.domain.model.Account;
 import com.monese.bankit.transaction.domain.model.History;
 import com.monese.bankit.transaction.domain.model.Source;
@@ -15,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -46,19 +42,19 @@ public class TransactionService {
         return historyRepository.save(history);
     }
 
-    public StatementDTO allAccountHistory(String accountNumber, LocalDate startDate, LocalDate endDate) {
-        Account account = accountRepository.findAccountByNumber(accountNumber);
+    public StatementDTO allAccountHistory(String accountNumber) {
+        Account account = accountRepository.findAccountByAcNumber(accountNumber);
         MoneyDTO moneyDTO = MoneyDTO.of(account.getMoney().getBalance(), account.getMoney().getCurrency());
-        List<HistoryDTO> histories = historyAssembler.toResources(historyRepository.findByAccountAndCreatedBetween(account, startDate, endDate));
+        List<HistoryDTO> histories = historyAssembler.toResources(historyRepository.findByAccount(account));
         StatementDTO statementDTO = new StatementDTO();
         statementDTO.setMoneyDTO(moneyDTO);
         statementDTO.setHistoryDTOList(histories);
         return statementDTO;
     }
 
-    public AccountDTO transfer(TransferDTO transferDTO) {
-        Account sender = accountRepository.findAccountByNumber(transferDTO.getSenderAccount());
-        Account receiver = accountRepository.findAccountByNumber(transferDTO.getReceiverAccount());
+    public ResponseDTO transfer(TransferDTO transferDTO) {
+        Account sender = accountRepository.findAccountByAcNumber(transferDTO.getSenderAccount());
+        Account receiver = accountRepository.findAccountByAcNumber(transferDTO.getReceiverAccount());
 
         BigDecimal senderCurrentBalance = sender.getMoney().getBalance();
         BigDecimal receiverCurrentBalance = receiver.getMoney().getBalance();
@@ -78,7 +74,11 @@ public class TransactionService {
             saveHistory(receiver, transferDTO.getAmount(), receiverCurrentBalance, receiver.getMoney().getBalance());
         }
 
-        return accountAssembler.toResource(sender);
+        ResponseDTO responseDTO = new ResponseDTO();
+        responseDTO.setReceiver(accountAssembler.toResource(receiver));
+        responseDTO.setSender(accountAssembler.toResource(sender));
+
+        return responseDTO;
 
     }
 

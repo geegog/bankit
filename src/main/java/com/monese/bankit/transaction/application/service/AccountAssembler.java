@@ -1,5 +1,6 @@
 package com.monese.bankit.transaction.application.service;
 
+import com.monese.bankit.common.application.dto.MoneyDTO;
 import com.monese.bankit.transaction.application.dto.AccountDTO;
 import com.monese.bankit.transaction.domain.model.Account;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,11 +23,13 @@ public class AccountAssembler extends ResourceAssemblerSupport<Account, AccountD
         if (account == null)
             return null;
         AccountDTO dto = instantiateResource(account);
+        MoneyDTO moneyDTO = MoneyDTO.of(account.getMoney().getBalance(), account.getMoney().getCurrency());
         dto.set_id(account.getId());
         dto.setCreated(account.getCreated());
-        dto.setNumber(account.getNumber());
+        dto.setNumber(account.getAcNumber());
         dto.setType(account.getType());
         dto.setUpdated(account.getUpdated());
+        dto.setMoney(moneyDTO);
         dto.setCustomer(customerAssembler.toResource(account.getCustomer()));
 
         return dto;
