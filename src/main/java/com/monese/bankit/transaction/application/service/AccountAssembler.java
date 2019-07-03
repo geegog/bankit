@@ -27,7 +27,7 @@ public class AccountAssembler extends ResourceAssemblerSupport<Account, AccountD
         dto.set_id(account.getId());
         dto.setCreated(account.getCreated());
         dto.setNumber(account.getAcNumber());
-        dto.setType(account.getType());
+        dto.setAccountType(account.getAccountType());
         dto.setUpdated(account.getUpdated());
         dto.setMoney(moneyDTO);
         dto.setCustomer(customerAssembler.toResource(account.getCustomer()));

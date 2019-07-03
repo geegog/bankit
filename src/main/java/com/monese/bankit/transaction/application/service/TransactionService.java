@@ -2,10 +2,7 @@ package com.monese.bankit.transaction.application.service;
 
 import com.monese.bankit.common.application.dto.MoneyDTO;
 import com.monese.bankit.transaction.application.dto.*;
-import com.monese.bankit.transaction.domain.model.Account;
-import com.monese.bankit.transaction.domain.model.History;
-import com.monese.bankit.transaction.domain.model.Source;
-import com.monese.bankit.transaction.domain.model.Type;
+import com.monese.bankit.transaction.domain.model.*;
 import com.monese.bankit.transaction.domain.repository.AccountRepository;
 import com.monese.bankit.transaction.domain.repository.HistoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +31,7 @@ public class TransactionService {
         History history = new History();
         history.setAccount(account);
         history.setAmount(amount);
-        history.setType(Type.DEBIT);
+        history.setTransactionType(TransactionType.DEBIT);
         history.setCurrentBalance(currentBalance);
         history.setNewBalance(newBalance);
         history.setSource(Source.MOBILE);

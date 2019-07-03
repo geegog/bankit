@@ -16,7 +16,7 @@ public class Account extends BaseEntity {
     private String acNumber;
 
     @Enumerated(EnumType.STRING)
-    private Type type;
+    private AccountType accountType;
 
     @ManyToOne
     private Customer customer;

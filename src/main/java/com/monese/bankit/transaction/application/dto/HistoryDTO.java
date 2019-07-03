@@ -1,7 +1,8 @@
 package com.monese.bankit.transaction.application.dto;
 
 import com.monese.bankit.transaction.domain.model.Source;
-import com.monese.bankit.transaction.domain.model.Type;
+import com.monese.bankit.transaction.domain.model.AccountType;
+import com.monese.bankit.transaction.domain.model.TransactionType;
 import lombok.Data;
 import org.springframework.hateoas.ResourceSupport;
 
@@ -27,6 +28,6 @@ public class HistoryDTO extends ResourceSupport {
 
     private Source source;
 
-    private Type type;
+    private TransactionType transactionType;
 
 }

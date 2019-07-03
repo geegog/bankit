@@ -25,7 +25,7 @@ public class HistoryAssembler extends ResourceAssemblerSupport<History, HistoryD
         dto.set_id(history.getId());
         dto.setCreated(history.getCreated());
         dto.setAccount(accountAssembler.toResource(history.getAccount()));
-        dto.setType(history.getType());
+        dto.setTransactionType(history.getTransactionType());
         dto.setUpdated(history.getUpdated());
         dto.setSource(history.getSource());
         dto.setCurrentBalance(history.getCurrentBalance());

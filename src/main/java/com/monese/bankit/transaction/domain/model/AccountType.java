@@ -1,7 +1,7 @@
 package com.monese.bankit.transaction.domain.model;
 
-public enum Type {
+public enum AccountType {
 
-    CREDIT, DEBIT, SAVINGS
+    CURRENT, SAVINGS
 
 }

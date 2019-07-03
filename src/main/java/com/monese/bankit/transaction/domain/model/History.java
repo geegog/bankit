@@ -28,6 +28,6 @@ public class History extends BaseEntity {
     private Source source;
 
     @Enumerated(EnumType.STRING)
-    private Type type;
+    private TransactionType transactionType;
 
 }
