@@ -1,4 +1,4 @@
-#bankit
+# bankit
 Simple back-end application using spring boot to send money between accounts.
 
 # How to run the application
