@@ -7,6 +7,7 @@ import com.monese.bankit.transaction.domain.repository.AccountRepository;
 import com.monese.bankit.transaction.domain.repository.HistoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -49,6 +50,7 @@ public class TransactionService {
         return statementDTO;
     }
 
+    @Transactional
     public ResponseDTO transfer(TransferDTO transferDTO) {
         Account sender = accountRepository.findAccountByAcNumber(transferDTO.getSenderAccount());
         Account receiver = accountRepository.findAccountByAcNumber(transferDTO.getReceiverAccount());
